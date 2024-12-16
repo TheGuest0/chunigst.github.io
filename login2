@@ -1,0 +1,18 @@
+!function(d){
+  if (d.location.host !== "lng-tgk-aime-gw.am-all.net") {
+    return;
+  }
+  
+  let clal = Object.fromEntries(d.cookie.split(";").map(c => c.split("=")))["clal"];
+  if (!clal || clal.length !== 64) {
+    return alert("錯誤!無法連接, 請重新登入,然後再試一次.");
+  }
+  
+  document.getElementById("error-ui").innerHTML = `<p>把這串指令傳到機器人的聊天室:</p>
+<code>/cglogin ${clal}</code>
+`;
+  const button = document.querySelector(".c-buttonWrap a");
+  button.innerText = "Copy to clipboard";
+  button.className = "c-button--noarrow";
+  button.href = `javascript:navigator.clipboard.writeText("c>login ${clal}")`;
+}(document)
